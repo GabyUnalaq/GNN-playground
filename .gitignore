@@ -1,0 +1,8 @@
+# Python cache files
+__pycache__/
+
+# Data folder
+/data
+
+# Graph vis html
+/graph_visualization.html
