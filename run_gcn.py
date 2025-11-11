@@ -1,8 +1,14 @@
+import time
+
 import torch
 import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
 from torch_geometric.datasets import Planetoid
 from torch_geometric.transforms import NormalizeFeatures
+
+"""
+GCNConv - NodeToNodeLayer with degree normalization
+"""
 
 # Define a simple Graph Convolutional Network
 class GCN(torch.nn.Module):
@@ -69,6 +75,7 @@ def test():
     return train_acc, val_acc, test_acc
 
 # Training loop
+start_time = time.time()
 print('\nTraining...')
 for epoch in range(1, 201):
     loss = train()
@@ -82,3 +89,24 @@ print(f'\nFinal Results:')
 print(f'Train Accuracy: {train_acc:.4f}')
 print(f'Validation Accuracy: {val_acc:.4f}')
 print(f'Test Accuracy: {test_acc:.4f}')
+print(f'Total Training Time: {time.time() - start_time:.2f} seconds')
+
+"""
+Training...
+Epoch: 020, Loss: 1.7242, Train: 0.9000, Val: 0.7180, Test: 0.7410
+Epoch: 040, Loss: 1.3540, Train: 0.9500, Val: 0.7580, Test: 0.7880
+Epoch: 060, Loss: 0.9784, Train: 0.9643, Val: 0.7680, Test: 0.8060
+Epoch: 080, Loss: 0.7138, Train: 0.9786, Val: 0.7860, Test: 0.8080
+Epoch: 100, Loss: 0.5760, Train: 0.9786, Val: 0.8000, Test: 0.8240
+Epoch: 120, Loss: 0.5034, Train: 0.9929, Val: 0.7900, Test: 0.8140
+Epoch: 140, Loss: 0.4248, Train: 1.0000, Val: 0.7900, Test: 0.8160
+Epoch: 160, Loss: 0.3934, Train: 1.0000, Val: 0.7920, Test: 0.8170
+Epoch: 180, Loss: 0.3183, Train: 1.0000, Val: 0.7920, Test: 0.8060
+Epoch: 200, Loss: 0.3206, Train: 1.0000, Val: 0.7820, Test: 0.7960
+
+Final Results:
+Train Accuracy: 1.0000
+Validation Accuracy: 0.7820
+Test Accuracy: 0.7960
+Total Training Time: 1.04 seconds
+"""

@@ -1,3 +1,5 @@
+import time
+
 import torch
 import torch.nn.functional as F
 from torch_geometric.datasets import Planetoid
@@ -121,6 +123,7 @@ def test():
     return train_acc, val_acc, test_acc
 
 # Training loop
+start_time = time.time()
 print('\nTraining...')
 for epoch in range(1, 201):
     loss = train()
@@ -134,21 +137,23 @@ print(f'\nFinal Results:')
 print(f'Train Accuracy: {train_acc:.4f}')
 print(f'Validation Accuracy: {val_acc:.4f}')
 print(f'Test Accuracy: {test_acc:.4f}')
+print(f'Total Training Time: {time.time() - start_time:.2f} seconds')
 """
 Training...
-Epoch: 020, Loss: 1.9533, Train: 0.1429, Val: 0.1220, Test: 0.1300
-Epoch: 040, Loss: 1.9462, Train: 0.1429, Val: 0.1620, Test: 0.1490
-Epoch: 060, Loss: 1.6377, Train: 0.2857, Val: 0.2320, Test: 0.2460
-Epoch: 080, Loss: 1.1582, Train: 0.4071, Val: 0.2960, Test: 0.3430
-Epoch: 100, Loss: 0.9727, Train: 0.5000, Val: 0.2100, Test: 0.2540
-Epoch: 120, Loss: 0.8630, Train: 0.5643, Val: 0.2540, Test: 0.3280
-Epoch: 140, Loss: 0.8478, Train: 0.6071, Val: 0.3080, Test: 0.3510
-Epoch: 160, Loss: 0.7519, Train: 0.5786, Val: 0.3020, Test: 0.3470
-Epoch: 180, Loss: 0.7019, Train: 0.7000, Val: 0.2960, Test: 0.3120
-Epoch: 200, Loss: 0.6043, Train: 0.7143, Val: 0.2760, Test: 0.2870
+Epoch: 020, Loss: 0.5153, Train: 0.8286, Val: 0.3280, Test: 0.3890
+Epoch: 040, Loss: 0.1003, Train: 1.0000, Val: 0.4740, Test: 0.4770
+Epoch: 060, Loss: 0.0375, Train: 1.0000, Val: 0.4780, Test: 0.4890
+Epoch: 080, Loss: 0.0281, Train: 1.0000, Val: 0.5060, Test: 0.5220
+Epoch: 100, Loss: 0.5499, Train: 0.6500, Val: 0.4820, Test: 0.4900
+Epoch: 120, Loss: 0.0754, Train: 1.0000, Val: 0.5000, Test: 0.5250
+Epoch: 140, Loss: 0.0117, Train: 1.0000, Val: 0.5140, Test: 0.5500
+Epoch: 160, Loss: 0.0135, Train: 1.0000, Val: 0.5380, Test: 0.5390
+Epoch: 180, Loss: 0.0129, Train: 1.0000, Val: 0.5500, Test: 0.5500
+Epoch: 200, Loss: 0.0123, Train: 1.0000, Val: 0.5480, Test: 0.5370
 
 Final Results:
-Train Accuracy: 0.7143
-Validation Accuracy: 0.2760
-Test Accuracy: 0.2870
+Train Accuracy: 1.0000
+Validation Accuracy: 0.5480
+Test Accuracy: 0.5370
+Total Training Time: 2586.82 seconds
 """
