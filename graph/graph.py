@@ -45,6 +45,18 @@ class Graph:
         self.graph_features = None
 
         self._init_features()
+
+    def __copy__(self) -> 'Graph':
+        return Graph(config={
+            'num_nodes': self.num_nodes,
+            'node_feature_dim': self.node_feature_dim,
+            'edge_feature_dim': self.edge_feature_dim,
+            'graph_feature_dim': self.graph_feature_dim,
+            'node_features': self.node_features.tolist(),
+            'edges': self.edge_index.t().tolist(),
+            'edge_features': self.edge_features.tolist(),
+            'graph_features': self.graph_features.tolist() if self.graph_features is not None else None
+        })
     
     def __repr__(self):
         return (f"Graph(num_nodes={self.num_nodes}, num_edges={self.num_edges}, "

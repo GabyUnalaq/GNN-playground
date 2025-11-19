@@ -4,7 +4,7 @@ from net.layers import NodeToNodeLayer
 
 
 class SimpleNet(nn.Module):
-    def __init__(self, node_feature_dim: int, edge_feature_dim: int):
+    def __init__(self, node_feature_dim: int, edge_feature_dim: int = 0):
         super(SimpleNet, self).__init__()
         final_node_dim = 4
 
