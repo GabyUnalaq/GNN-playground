@@ -1,3 +1,7 @@
+# Graph Neural Network playground
+
+Using this repository for playing around with the GNN theory and for testing small ideas.
+
 ## Python setup
 
 I am using [uv](https://docs.astral.sh/uv/pip/environments/) to set my python env.
